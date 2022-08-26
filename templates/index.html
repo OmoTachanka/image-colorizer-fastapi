@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Image Colorizer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="../static/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Asap+Condensed:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+  <!-- partial:index.partial.html -->
+  <main>
+
+    <div class="main_wrapper">
+      <!-- <div class="form_container">
+        <form method="post" enctype="multipart/form-data">
+          <div class="wrapper">
+            <div class="file-upload">
+              <input type="file" />
+              <i class="fa fa-arrow-up"></i>
+            </div>
+          </div>
+        </form>
+      </div> -->
+
+      {% if not results %}
+      <div class="wrapper">
+        <form target="_self" method="post" enctype="multipart/form-data">
+          <input type="file" class="file" name="file" accept="image/png, image/jpg, image/jpeg">
+          <input type="submit" class="submitbtn" />
+        </form>
+        <iframe name="frame" style="display:none;"></iframe>
+      </div>
+      {% else %}  
+      <div class="container" id="container">
+        <div id="sub-cont">
+          <div class="image-container">
+       
+              <img class="image-before slider-image" src= '{{ results.input }}' alt="color photo" />
+              <img class="image-after slider-image" src= '{{ results.output }}' alt="black and white" />
+      
+          </div>
+          <!-- step="10" -->
+          <input type="range" min="0" max="100" value="50" aria-label="Percentage of before photo shown" class="slider" />
+          <div class="slider-line" aria-hidden="true"></div>
+          <div class="slider-button" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" viewBox="0 0 256 256">
+              <rect width="256" height="256" fill="none"></rect>
+              <line x1="128" y1="40" x2="128" y2="216" fill="none" stroke="currentColor" stroke-linecap="round"
+                stroke-linejoin="round" stroke-width="16"></line>
+              <line x1="96" y1="128" x2="16" y2="128" fill="none" stroke="currentColor" stroke-linecap="round"
+                stroke-linejoin="round" stroke-width="16"></line>
+              <polyline points="48 160 16 128 48 96" fill="none" stroke="currentColor" stroke-linecap="round"
+                stroke-linejoin="round" stroke-width="16"></polyline>
+              <line x1="160" y1="128" x2="240" y2="128" fill="none" stroke="currentColor" stroke-linecap="round"
+                stroke-linejoin="round" stroke-width="16"></line>
+              <polyline points="208 96 240 128 208 160" fill="none" stroke="currentColor" stroke-linecap="round"
+                stroke-linejoin="round" stroke-width="16"></polyline>
+            </svg>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+
+  </main>
+  <!-- partial -->
+  <script src="../static/script.js"></script>
+</body>
+</html>
